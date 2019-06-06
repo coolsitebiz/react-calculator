@@ -1,5 +1,4 @@
 import React from 'react';
-import './Buttons.css';
 
 class Buttons extends React.Component {
 
@@ -34,7 +33,9 @@ function Button(props) {
     console.log(props);
 
     return(
-        <div className={!isNaN(props.buttonText) ? 'digit' : 'operator'}>{props.buttonText}</div>
+        <div className={!isNaN(props.buttonText) ? 'digit' : 'operator'}>
+            {props.buttonText}
+        </div>
         
     );
 }
