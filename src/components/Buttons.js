@@ -4,7 +4,7 @@ class Buttons extends React.Component {
 
     render() {
         return(
-            <div>
+            <div className='buttonGrid'>
                 <Button id="seven" buttonText="7"/>
                 <Button id="eight" buttonText= "8"/>
                 <Button id="nine" buttonText="9"/>
@@ -17,8 +17,8 @@ class Buttons extends React.Component {
                 <Button id="two" buttonText="2"/>
                 <Button id="three" buttonText="3"/>
                 <Button id="subtract" buttonText="-"/>
-                <Button id="zero" buttonText="0"/>
                 <Button id="decimal" buttonText="."/>
+                <Button id="zero" buttonText="0"/>
                 <Button id="equals" buttonText="="/>
                 <Button id="add" buttonText="+"/>
                 <Button id="clear" buttonText="CE"/>
