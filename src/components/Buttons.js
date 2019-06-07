@@ -33,7 +33,7 @@ function Button(props) {
     console.log(props);
 
     return(
-        <div className={!isNaN(props.buttonText) ? 'digit' : 'operator'}>
+        <div className={!isNaN(props.buttonText) ? 'digit' : props.buttonText.length > 1 ? 'clear' : 'operator'}>
             {props.buttonText}
         </div>
         
