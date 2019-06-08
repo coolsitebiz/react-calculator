@@ -1,8 +1,12 @@
 import React from 'react';
 
 class Buttons extends React.Component {
+    constructor(props) {
+        super(props);
+    }
 
     render() {
+        console.log(this.props);
         return(
             <div className='buttonGrid'>
                 <Button id="seven" buttonText="7"/>
@@ -21,7 +25,7 @@ class Buttons extends React.Component {
                 <Button id="zero" buttonText="0"/>
                 <Button id="equals" buttonText="="/>
                 <Button id="add" buttonText="+"/>
-                <Button id="clear" buttonText="CE"/>
+                <Button id="clear" buttonText="CE" clicked={this.props.clicked}/>
             </div>
         );
     }
@@ -30,10 +34,14 @@ class Buttons extends React.Component {
 }
 
 function Button(props) {
-    console.log(props);
-
     return(
-        <div className={!isNaN(props.buttonText) ? 'digit' : props.buttonText.length > 1 ? 'clear' : 'operator'}>
+        <div className={
+            !isNaN(props.buttonText) ? 'digit' 
+            : props.buttonText.length > 1 ? 'clear' 
+            : 'operator'}
+            buttonText={props.buttonText}
+            id={props.id}
+            onClick={props.clicked}>
             {props.buttonText}
         </div>
         

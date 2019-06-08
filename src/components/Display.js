@@ -5,8 +5,8 @@ function Display(props) {
         <div id="display" className="display">
             
             <div className="screen">
-                <div className="screen-top">top display</div>
-                <div className="screen-bottom">bottom display</div>
+                <div className="screen-top" dir="rtl">{props.screenTopText}</div>
+                <div className="screen-bottom" dir="rtl">{props.screenBottomText}</div>
             </div>
 
         </div>
