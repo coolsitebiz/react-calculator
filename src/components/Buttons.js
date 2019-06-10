@@ -38,6 +38,7 @@ function Button(props) {
             !isNaN(props.buttonText) ? 'digit' 
             : props.buttonText.length > 1 ? 'clear' 
             : 'operator'}
+            id={props.id}
             onClick={props.clicked}
             value={props.buttonText}
             >

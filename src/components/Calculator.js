@@ -26,10 +26,12 @@ class Calculator extends React.Component {
                 this.setState({
                     input: keyInput
                 })
-            } else {
+            } else if (operators.indexOf(keyInput) > -1){
                 this.setState({
                     input: this.state.input + keyInput
                 })
+            } else {
+                this.inputConcat(keyInput);
             }
         }
 
