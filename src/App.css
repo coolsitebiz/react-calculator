@@ -11,6 +11,7 @@
     height: 100vh;
     overflow: hidden;
     overflow: -moz-hidden-unscrollable;
+    background: #555;
 }
 
 .display {
@@ -46,7 +47,7 @@
     align-items: center;
     justify-content: stretch;
     align-content: stretch;
-    grid-gap: 1px;
+    grid-gap: 0px;
     width: 100%;
     height: 80%;
 
@@ -60,6 +61,7 @@
     width: 100%;
     height: 100%;
     border: 1px solid black;
+    border-radius: 5px;
 
     font-size: 1.5em;
 
@@ -92,7 +94,8 @@
         margin-right: auto;
         width: 400px;
         height: 600px;
-        border: 1px solid black;
-        
+        border: 4px solid #333;
+        border-radius: 10px;
+        margin-top: 5vh;  
     }
 }

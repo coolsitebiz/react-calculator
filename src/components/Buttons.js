@@ -1,12 +1,11 @@
 import React from 'react';
 
 class Buttons extends React.Component {
-    constructor(props) {
-        super(props);
-    }
+    // constructor(props) {
+    //     super(props);
+    // }
 
     render() {
-        console.log(this.props);
         return(
             <div className='buttonGrid'>
                 <Button id="seven" buttonText="7" clicked={this.props.clicked}/>
@@ -35,14 +34,15 @@ class Buttons extends React.Component {
 
 function Button(props) {
     return(
-        <div className={
+        <button className={
             !isNaN(props.buttonText) ? 'digit' 
             : props.buttonText.length > 1 ? 'clear' 
             : 'operator'}
             onClick={props.clicked}
+            value={props.buttonText}
             >
             {props.buttonText}
-        </div>
+        </button>
         
     );
 }

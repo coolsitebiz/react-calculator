@@ -13,16 +13,37 @@ class Calculator extends React.Component {
 
     handleButtonClick = (e) => {
         const prevInput = String(this.state.input);
-        const keyInput = String(e.target.innerHTML);
-        const operators = "+/*";
-        const initialBadKeys = "0.-+"
+        const keyInput = String(e.target.value);
+        const operators = "+/*-";
+        const initialBadKeys = "0.-+";
 
         if (keyInput === "CE") {
             this.clearDisplay();
         } 
 
-        
+        if ("1234567890.//+-*".indexOf(keyInput) > -1) {
+            if (this.state.input === "0" && !isNaN(keyInput)) {
+                this.setState({
+                    input: keyInput
+                })
+            } else {
+                this.setState({
+                    input: this.state.input + keyInput
+                })
+            }
+        }
 
+        if (keyInput === "=") {
+            const lastChar = prevInput.charAt(prevInput.length-1);
+            let inputString = prevInput;
+            if(operators.indexOf(lastChar) > -1) {
+                inputString = inputString.substring(0, inputString.length-1);
+            }
+            this.setState({
+                output: eval(inputString)
+            })
+        }
+        
         
     }
 
