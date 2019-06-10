@@ -9,22 +9,42 @@ class Calculator extends React.Component {
             input: "0",
             output: "0"
         }
-
-        this.handleButtonClick = this.handleButtonClick.bind(this);
     }
 
-    handleButtonClick(event) {
-        var text = event.target.buttonText;
+    handleButtonClick = (e) => {
+        const prevInput = String(this.state.input);
+        const keyInput = String(e.target.innerHTML);
+        const operators = "+/*";
+        const initialBadKeys = "0.-+"
+
+        if (keyInput === "CE") {
+            this.clearDisplay();
+        } 
+
+        
+
+        
+    }
+
+    inputConcat = (value) => {
         this.setState({
-            input: text
+            input: this.state.input + String(value)
         })
     }
+
+    clearDisplay = () => {
+        this.setState({
+            input: "0",
+            output: "0"
+        })
+    }
+
 
     render() {
         return(
             <div className="container">
                 <Display screenTopText={this.state.input.toString()} screenBottomText={this.state.output.toString()}/>
-                <Buttons clicked={this.handleButtonClick}/>
+                <Buttons clicked={(this.handleButtonClick)}/>
             </div>
         );
     }
