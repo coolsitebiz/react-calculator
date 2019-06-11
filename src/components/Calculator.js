@@ -41,8 +41,10 @@ class Calculator extends React.Component {
             if(operators.indexOf(lastChar) > -1) {
                 inputString = inputString.substring(0, inputString.length-1);
             }
+            let result = eval(inputString);
             this.setState({
-                output: eval(inputString)
+                input: result,
+                output: result
             })
         }
         
