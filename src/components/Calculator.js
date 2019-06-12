@@ -15,40 +15,85 @@ class Calculator extends React.Component {
         const prevInput = String(this.state.input);
         const keyInput = String(e.target.value);
         const operators = "+/*-";
-        const initialBadKeys = "0.-+";
+        const lastChar = prevInput.charAt(prevInput.length-1);
+        const firstChar = prevInput.length === 1 ? true : false;
 
-        if (keyInput === "CE") {
-            this.clearDisplay();
-        } 
+        switch(keyInput) {
+            case "CE":
+                this.clearDisplay();
+                break;
 
-        if ("1234567890.//+-*".indexOf(keyInput) > -1) {
-            if (this.state.input === "0" && !isNaN(keyInput)) {
+            case "1":
+            case "2":
+            case "3":
+            case "4":
+            case "5":
+            case "6":
+            case "7":
+            case "8":
+            case "9":
+            case "0":
+                this.handleZero(firstChar, prevInput, keyInput);
+                break;
+            case "+":
+            case "*":
+            case "/":
+            case "-":
+                console.log("operator");
+                break;
+            case ".":
+                console.log("decimal");
+                break;
+            case "=":
+                let inputString = prevInput;
+                if(operators.indexOf(lastChar) > -1) {
+                    inputString = inputString.substring(0, inputString.length-1);
+                }
+                let result = eval(inputString);
                 this.setState({
-                    input: keyInput
+                    input: result,
+                    output: result
                 })
-            } else if (operators.indexOf(keyInput) > -1){
-                this.setState({
-                    input: this.state.input + keyInput
-                })
-            } else {
-                this.inputConcat(keyInput);
-            }
+                break;
+            default:
+                console.log("whatever");
+
         }
+        
+        // if (keyInput === "CE") {
+        //     this.clearDisplay();
+        // } 
 
-        if (keyInput === "=") {
-            const lastChar = prevInput.charAt(prevInput.length-1);
-            let inputString = prevInput;
-            if(operators.indexOf(lastChar) > -1) {
-                inputString = inputString.substring(0, inputString.length-1);
-            }
-            let result = eval(inputString);
+        // if ("1234567890.//+-*".indexOf(keyInput) > -1) {
+        //     if (this.state.input === "0" && !isNaN(keyInput)) {
+        //         this.setState({
+        //             input: keyInput
+        //         })
+        //     } else if (operators.indexOf(keyInput) > -1){
+        //         this.setState({
+        //             input: this.state.input + keyInput
+        //         })
+                
+        //     } else if (keyInput === "." && prevInput.indexOf(keyInput) > -1) {
+        //         return;
+        //     } else {
+        //         this.inputConcat(keyInput);
+        //     }
+        // }
+        
+        
+    }
+
+    handleZero(firstChar, prevInput, keyInput) {
+        if (firstChar && prevInput === "0") {
             this.setState({
-                input: result,
-                output: result
+                input: keyInput
             })
-        }
-        
-        
+        } else {
+            this.setState({
+                input: prevInput + keyInput
+            })
+        };
     }
 
     inputConcat = (value) => {
