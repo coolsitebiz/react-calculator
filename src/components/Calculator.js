@@ -6,7 +6,7 @@ class Calculator extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            input: "0",
+            input: "0+",
             output: "0"
         }
     }
@@ -39,10 +39,16 @@ class Calculator extends React.Component {
             case "*":
             case "/":
             case "-":
-                console.log("operator");
+                if("+-/*".includes(lastChar)) {
+                    this.setState({
+                        input: prevInput.substring(0, prevInput.length-1) + keyInput
+                    })
+                } else {
+                    this.inputConcat(keyInput);
+                }
                 break;
             case ".":
-                console.log("decimal");
+                console.log(prevInput.substring(0, prevInput.length-1));
                 break;
             case "=":
                 let inputString = prevInput;
