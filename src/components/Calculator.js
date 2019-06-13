@@ -6,7 +6,7 @@ class Calculator extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            input: "0+",
+            input: "0",
             output: "0"
         }
     }
@@ -22,7 +22,6 @@ class Calculator extends React.Component {
             case "CE":
                 this.clearDisplay();
                 break;
-
             case "1":
             case "2":
             case "3":
@@ -48,7 +47,11 @@ class Calculator extends React.Component {
                 }
                 break;
             case ".":
-                console.log(prevInput.substring(0, prevInput.length-1));
+                if (this.checkDecimal(prevInput)) {
+                    return;
+                } else {
+                    this.inputConcat(keyInput);
+                }
                 break;
             case "=":
                 let inputString = prevInput;
@@ -62,33 +65,16 @@ class Calculator extends React.Component {
                 })
                 break;
             default:
-                console.log("whatever");
+                return;
 
-        }
-        
-        // if (keyInput === "CE") {
-        //     this.clearDisplay();
-        // } 
-
-        // if ("1234567890.//+-*".indexOf(keyInput) > -1) {
-        //     if (this.state.input === "0" && !isNaN(keyInput)) {
-        //         this.setState({
-        //             input: keyInput
-        //         })
-        //     } else if (operators.indexOf(keyInput) > -1){
-        //         this.setState({
-        //             input: this.state.input + keyInput
-        //         })
-                
-        //     } else if (keyInput === "." && prevInput.indexOf(keyInput) > -1) {
-        //         return;
-        //     } else {
-        //         this.inputConcat(keyInput);
-        //     }
-        // }
-        
-        
+        }    
     }
+
+    checkDecimal(input) {
+        const regex = /[-+*/]/g;
+        const lastTerm = input.split(regex).slice(-1);
+        return lastTerm[0].includes(".");
+      }
 
     handleZero(firstChar, prevInput, keyInput) {
         if (firstChar && prevInput === "0") {
