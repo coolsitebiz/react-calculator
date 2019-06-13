@@ -75,13 +75,25 @@
     background: #ddd;
 }
 
+.digit:active {
+    background: #eee;
+}
+
 .operator {
     background: #aaa;
+}
+
+.operator:active {
+    background: #bbb;
 }
 
 .clear {
     grid-column: 1 / span 4;
     background: #ccc;
+}
+
+.clear:active {
+    background: #ddd;
 }
 
 @media only screen and (min-width: 768px) {
